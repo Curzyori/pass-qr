@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassQR</string>
+    <string name="tab_generator">Generator</string>
+    <string name="tab_scanner">Scanner</string>
+    <string name="wifi_ssid_label">Network Name (SSID)</string>
+    <string name="wifi_password_label">Password</string>
+    <string name="wifi_security_label">Security</string>
+    <string name="generate_qr_button">Generate QR Code</string>
+    <string name="scan_qr_button">Scan QR Code</string>
+    <string name="show_password">Show password</string>
+    <string name="hide_password">Hide password</string>
+    <string name="camera_permission_required">Camera permission is required to scan QR codes.</string>
+    <string name="grant_permission">Grant Permission</string>
+</resources>

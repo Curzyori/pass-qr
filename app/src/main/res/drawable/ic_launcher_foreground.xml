@@ -1,0 +1,28 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- QR code stylised icon -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,38h10v10h-10z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,38h10v10h-10z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M38,60h10v10h-10z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M55,55h5v5h-5z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M65,60h5v5h-5z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M60,65h5v5h-5z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M70,70h5v5h-5z" />
+</vector>
