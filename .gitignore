@@ -12,3 +12,6 @@ local.properties
 .jdk
 .android-sdk
 *.txt
+.prompt
+.prompt/*
+.prompt/

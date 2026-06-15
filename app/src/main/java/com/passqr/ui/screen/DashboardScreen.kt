@@ -14,9 +14,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -25,9 +24,18 @@ import com.passqr.ui.component.SegmentedControl
 private const val TAB_SCANNER   = 0
 private const val TAB_GENERATOR = 1
 
+/**
+ * Root dashboard screen — single-activity architecture.
+ *
+ * DESIGN.md references:
+ * - Dashboard: Single screen with top segmented control (Scanner/Generator).
+ * - Top segmented control (Active: Coral background, Inactive: Transparent).
+ * - Smooth transition between Camera preview (Scanner) and Input form (Generator).
+ */
 @Composable
 fun DashboardScreen() {
-    var selectedTab by remember { mutableIntStateOf(TAB_GENERATOR) }
+    // rememberSaveable survives configuration changes (rotation)
+    var selectedTab by rememberSaveable { mutableIntStateOf(TAB_GENERATOR) }
     val tabs = listOf("Scanner", "Generator")
 
     Column(
@@ -58,7 +66,7 @@ fun DashboardScreen() {
 
         Spacer(Modifier.height(20.dp))
 
-        // DESIGN.md: "Top segmented control (Active: Coral background, Inactive: Transparent)"
+        // Segmented Control — Active: Coral background, Inactive: Transparent
         SegmentedControl(
             tabs          = tabs,
             selectedIndex = selectedTab,
@@ -67,8 +75,7 @@ fun DashboardScreen() {
 
         Spacer(Modifier.height(24.dp))
 
-        // Content area with crossfade transition
-        // DESIGN.md: "Smooth transition between Camera preview (Scanner) and Input form (Generator)"
+        // Content area — Crossfade provides smooth transition between tabs
         Crossfade(
             targetState   = selectedTab,
             animationSpec = tween(300),
@@ -76,63 +83,9 @@ fun DashboardScreen() {
             modifier      = Modifier.fillMaxWidth()
         ) { tab ->
             when (tab) {
-                TAB_SCANNER   -> ScannerPlaceholder()
-                TAB_GENERATOR -> GeneratorPlaceholder()
+                TAB_SCANNER   -> ScannerScreen()
+                TAB_GENERATOR -> GeneratorScreen()
             }
         }
-    }
-}
-
-/**
- * Placeholder for the Scanner tab.
- * Will be replaced by CameraX preview + ZXing analysis in a future phase.
- */
-@Composable
-private fun ScannerPlaceholder() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 40.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text      = "Scanner",
-            style     = MaterialTheme.typography.headlineMedium,
-            color     = MaterialTheme.colorScheme.onBackground
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            text      = "Point your camera at a Wi-Fi QR code\nto connect instantly.",
-            style     = MaterialTheme.typography.bodyMedium,
-            color     = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
-            textAlign = TextAlign.Center
-        )
-    }
-}
-
-/**
- * Placeholder for the Generator tab.
- * Will be replaced by the Wi-Fi input form + QR output in a future phase.
- */
-@Composable
-private fun GeneratorPlaceholder() {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 40.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text      = "Generator",
-            style     = MaterialTheme.typography.headlineMedium,
-            color     = MaterialTheme.colorScheme.onBackground
-        )
-        Spacer(Modifier.height(8.dp))
-        Text(
-            text      = "Enter your Wi-Fi credentials to generate\na shareable QR code.",
-            style     = MaterialTheme.typography.bodyMedium,
-            color     = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
-            textAlign = TextAlign.Center
-        )
     }
 }
