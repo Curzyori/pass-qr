@@ -56,6 +56,7 @@ import com.passqr.ui.theme.CoralPrimary
 import com.passqr.ui.theme.OnPrimary
 import com.passqr.ui.theme.SurfaceElevated
 import com.passqr.util.WifiCredentialsStore
+import com.passqr.util.getCurrentWifiInfo
 import com.passqr.util.rememberWifiConnected
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -88,15 +89,45 @@ fun GeneratorScreen() {
             // ── Not connected: empty state with deep-link to Wi-Fi settings ──
             !wifiConnected -> WifiDisconnectedEmptyState(context)
 
-            // ── Connected but no saved credentials ──
-            !store.hasCredentials() -> NoCredentialsState()
-
-            // ── Connected + credentials available: generate QR ──
+            // ── Connected: try store first, then auto-detect from system ──
             else -> {
                 // credsKey forces re-read when wifiConnected toggles
-                val ssid = store.getSsid() ?: ""
-                val security = store.getSecurity()
-                val password = store.getPassword()
+                val storeSsid = store.getSsid()
+                val currentWifi = remember(credsKey) { getCurrentWifiInfo(context) }
+
+                // Determine credentials to use:
+                // 1. If store has credentials matching current SSID → use stored (has password)
+                // 2. If store has credentials for different SSID → use stored as fallback
+                // 3. No stored credentials → auto-detect SSID/security from system (no password)
+                val ssid: String
+                val security: String
+                val password: String
+
+                when {
+                    // Store has credentials for the currently connected network
+                    storeSsid != null && currentWifi != null && storeSsid == currentWifi.ssid -> {
+                        ssid = storeSsid
+                        security = store.getSecurity()
+                        password = store.getPassword()
+                    }
+                    // Store has credentials (possibly different SSID) — still use them
+                    storeSsid != null -> {
+                        ssid = storeSsid
+                        security = store.getSecurity()
+                        password = store.getPassword()
+                    }
+                    // No stored creds — auto-detect from system WiFi connection
+                    currentWifi != null -> {
+                        ssid = currentWifi.ssid
+                        security = currentWifi.security
+                        password = ""
+                    }
+                    // Connected but couldn't get WiFi info (very rare)
+                    else -> {
+                        NoCredentialsState()
+                        return@Column
+                    }
+                }
 
                 val qrBitmap = remember(ssid, security, password, credsKey) {
                     generateWifiQrBitmapWithLogo(context, ssid, security, password)
@@ -107,7 +138,8 @@ fun GeneratorScreen() {
                     password = password,
                     passwordVisible = passwordVisible,
                     onTogglePassword = { passwordVisible = !passwordVisible },
-                    qrBitmap = qrBitmap
+                    qrBitmap = qrBitmap,
+                    isAutoDetected = storeSsid == null
                 )
             }
         }
@@ -207,7 +239,8 @@ private fun QrDisplayCard(
     password: String,
     passwordVisible: Boolean,
     onTogglePassword: () -> Unit,
-    qrBitmap: Bitmap?
+    qrBitmap: Bitmap?,
+    isAutoDetected: Boolean = false
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
@@ -219,7 +252,7 @@ private fun QrDisplayCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Scan to connect to:",
+                text = if (isAutoDetected) "Auto-detected network:" else "Scan to connect to:",
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f)
             )
@@ -275,11 +308,19 @@ private fun QrDisplayCard(
                     IconButton(onClick = onTogglePassword) {
                         Icon(
                             imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
-                            contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                            contentDescription = if (passwordVisible) "Show password" else "Hide password",
                             tint = CoralPrimary
                         )
                     }
                 }
+            } else if (isAutoDetected) {
+                // No password available from system — show hint
+                Text(
+                    text = "Password not available from system.\nScan a QR code to save credentials.",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.4f),
+                    textAlign = TextAlign.Center
+                )
             }
 
             Spacer(Modifier.height(12.dp))
