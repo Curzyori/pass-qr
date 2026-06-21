@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PassQR</string>
+    <string name="app_tagline">Akses QR Instan ke Web &amp; Aplikasi</string>
+
+    <string name="tab_web">Web</string>
+    <string name="tab_app">App</string>
+
+    <!-- Scanner -->
+    <string name="scanner_hint">Arahkan kamera ke kode QR untuk buka Web atau Aplikasi</string>
+    <string name="camera_permission_title">Izin Kamera Diperlukan</string>
+    <string name="camera_permission_body">Izin kamera diperlukan untuk memindai kode QR.</string>
+    <string name="grant_permission">Berikan Izin</string>
+    <string name="open_settings">Buka Pengaturan</string>
+    <string name="permission_denied_hint">Izin ditolak. Silakan aktifkan kamera di Pengaturan.</string>
+    <string name="scan_complete">Pemindaian Selesai</string>
+    <string name="detected_url">Terdeteksi: %1$s</string>
+    <string name="scan_again">Scan Lagi</string>
+
+    <!-- Errors -->
+    <string name="error_camera_unavailable">Kamera tidak tersedia di perangkat ini</string>
+    <string name="error_qr_generation_failed">Gagal membuat QR. Silakan coba lagi.</string>
+
+    <!-- Footer -->
+    <string name="footer_buy_coffee">Beli Kopi</string>
+    <string name="footer_copyright">© 2026 Curzy. Gratis &amp; terbuka untuk semua orang.</string>
+</resources>

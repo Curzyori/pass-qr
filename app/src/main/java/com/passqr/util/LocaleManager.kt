@@ -1,17 +1,15 @@
 package com.passqr.util
 
+import android.app.Activity
 import android.content.Context
 import android.content.res.Configuration
 import androidx.core.content.edit
-import java.util.Locale
 
 /**
  * In-app language switcher for PassQR.
  *
- * Persists user's choice in [android.content.SharedPreferences] and applies it
- * to the activity context via [Configuration]. This is independent of the
- * system locale, matching the pattern used by ZeroCache / Morsify / SpecMD /
- * ExAPK / BypassDNS for cross-project consistency.
+ * Persists user's choice in SharedPreferences and applies it via Configuration.
+ * Supports English (default) and Indonesian.
  */
 object LocaleManager {
 
@@ -33,17 +31,22 @@ object LocaleManager {
             .edit { putString(KEY, safe) }
     }
 
-    fun toggle(context: Context): String {
-        val current = getLanguage(context)
+    fun toggle(activity: Activity): String {
+        val current = getLanguage(activity)
         val next = if (current == LANG_INDONESIAN) LANG_ENGLISH else LANG_INDONESIAN
-        setLanguage(context, next)
+        setLanguage(activity, next)
+        activity.recreate()
         return next
+    }
+
+    fun getFlagEmoji(context: Context): String {
+        return if (getLanguage(context) == LANG_INDONESIAN) "🇮🇩" else "🇬🇧"
     }
 
     fun wrap(context: Context): Context {
         val lang = getLanguage(context)
-        val locale = Locale(lang)
-        Locale.setDefault(locale)
+        val locale = java.util.Locale(lang)
+        java.util.Locale.setDefault(locale)
         val config = Configuration(context.resources.configuration)
         config.setLocale(locale)
         config.setLayoutDirection(locale)
