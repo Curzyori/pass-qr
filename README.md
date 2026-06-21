@@ -83,9 +83,16 @@ cd pass-qr
 
 ## 🖼️ Preview
 
-| **Mobile App Demo** | **Web Interface Demo** |
-| :--- | :--- |
-| <img src="images/app.gif" width="200" alt="Mobile App Demo"/> | <img src="images/web.gif" width="200" alt="Web Interface Demo"/> |
+<table align="center">
+  <tr>
+    <td align="center"><b>Web Interface Demo</b></td>
+    <td align="center"><b>Mobile App Demo</b></td>
+  </tr>
+  <tr>
+    <td><img src="images/web.gif" width="200" alt="Web Interface Demo"/></td>
+    <td><img src="images/app.gif" width="200" alt="Mobile App Demo"/></td>
+  </tr>
+</table>
 
 ---
 
