@@ -1,15 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">PassQR</string>
-    <string name="tab_generator">Generator</string>
-    <string name="tab_scanner">Scanner</string>
-    <string name="wifi_ssid_label">Network Name (SSID)</string>
+    <string name="app_tagline">Akses QR Instan ke Web &amp; Aplikasi</string>
+
+    <string name="tab_scanner">Scan</string>
+    <string name="tab_generator">Buat</string>
+    <string name="tab_web">Web</string>
+    <string name="tab_app">App</string>
+
+    <!-- Scanner -->
+    <string name="scanner_hint">Arahkan kamera ke kode QR untuk buka Web atau Aplikasi</string>
+    <string name="camera_permission_title">Izin Kamera Diperlukan</string>
+    <string name="camera_permission_body">Izin kamera diperlukan untuk memindai kode QR.</string>
+    <string name="grant_permission">Berikan Izin</string>
+    <string name="open_settings">Buka Pengaturan</string>
+    <string name="permission_denied_hint">Izin ditolak. Silakan aktifkan kamera di Pengaturan.</string>
+    <string name="scan_complete">Pemindaian Selesai</string>
+    <string name="detected_url">Terdeteksi: %1$s</string>
+    <string name="scan_again">Scan Lagi</string>
+
+    <!-- Legacy Wi-Fi Strings (can be removed later) -->
+    <string name="wifi_ssid_label">Nama Jaringan (SSID)</string>
     <string name="wifi_password_label">Password</string>
-    <string name="wifi_security_label">Security</string>
-    <string name="generate_qr_button">Generate QR Code</string>
-    <string name="scan_qr_button">Scan QR Code</string>
-    <string name="show_password">Show password</string>
-    <string name="hide_password">Hide password</string>
-    <string name="camera_permission_required">Camera permission is required to scan QR codes.</string>
-    <string name="grant_permission">Grant Permission</string>
+    <string name="wifi_security_label">Keamanan</string>
+    <string name="generate_qr_button">Buat Kode QR</string>
+    <string name="scan_qr_button">Pindai Kode QR</string>
+    <string name="show_password">Tampilkan password</string>
+    <string name="hide_password">Sembunyikan password</string>
+    <string name="camera_permission_required">Izin kamera diperlukan untuk memindai kode QR.</string>
+
+    <!-- Errors -->
+    <string name="error_camera_unavailable">Kamera tidak tersedia di perangkat ini</string>
+    <string name="error_qr_generation_failed">Gagal membuat QR. Silakan coba lagi.</string>
 </resources>
