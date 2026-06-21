@@ -85,12 +85,12 @@ cd pass-qr
 
 **Mobile App Demo**
 <p align="center">
-  <video src="app.mp4" width="100%" controls></video>
+  <img src="images/app.gif" width="100%" alt="Mobile App Demo"/>
 </p>
 
 **Web Interface Demo**
 <p align="center">
-  <video src="web.mp4" width="100%" controls></video>
+  <img src="images/web.gif" width="100%" alt="Web Interface Demo"/>
 </p>
 
 ---
