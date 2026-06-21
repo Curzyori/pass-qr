@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="logo.png" alt="PassQR Logo" width="120"/>
+  <img src="/images/logo.png" alt="PassQR Logo" width="120"/>
 </p>
 
 <h1 align="center">PassQR</h1>

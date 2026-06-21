@@ -19,16 +19,6 @@
     <string name="detected_url">Terdeteksi: %1$s</string>
     <string name="scan_again">Scan Lagi</string>
 
-    <!-- Legacy Wi-Fi Strings (can be removed later) -->
-    <string name="wifi_ssid_label">Nama Jaringan (SSID)</string>
-    <string name="wifi_password_label">Password</string>
-    <string name="wifi_security_label">Keamanan</string>
-    <string name="generate_qr_button">Buat Kode QR</string>
-    <string name="scan_qr_button">Pindai Kode QR</string>
-    <string name="show_password">Tampilkan password</string>
-    <string name="hide_password">Sembunyikan password</string>
-    <string name="camera_permission_required">Izin kamera diperlukan untuk memindai kode QR.</string>
-
     <!-- Errors -->
     <string name="error_camera_unavailable">Kamera tidak tersedia di perangkat ini</string>
     <string name="error_qr_generation_failed">Gagal membuat QR. Silakan coba lagi.</string>
