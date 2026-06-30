@@ -61,6 +61,7 @@ PassQR is a fast, privacy-friendly QR scanner designed for the modern Android ex
 - **UI Framework:** Jetpack Compose with Material Design 3
 - **Scanning Engine:** Shouzhong/Scanner + ZXing Core
 - **Architecture:** Single-Activity, Compose Navigation
+- **License:** Apache-2.0
 
 ---
 
@@ -83,16 +84,10 @@ cd pass-qr
 
 ## 🖼️ Preview
 
-<table align="center">
-  <tr>
-    <td align="center"><b>Web Interface Demo</b></td>
-    <td align="center"><b>Mobile App Demo</b></td>
-  </tr>
-  <tr>
-    <td><img src="images/web.gif" width="200" alt="Web Interface Demo"/></td>
-    <td><img src="images/app.gif" width="200" alt="Mobile App Demo"/></td>
-  </tr>
-</table>
+<p align="center">
+  <img src="images/web.gif" alt="Web Interface Demo" width="200"/>
+  <img src="images/app.gif" alt="Mobile App Demo" width="200"/>
+</p>
 
 ---
 
@@ -100,4 +95,20 @@ cd pass-qr
 
 This project is released under the **Apache License 2.0** — see [LICENSE](LICENSE) for full text.
 
-<sub>Built with passion as the 15th Project of the 50 Projects Challenge by <strong>@Curzyori</strong></sub>
+---
+
+## ☕ Support
+
+If this project is useful, consider supporting its development!
+
+<p align="center">
+  <a href="https://donate.curzy.dev/"><strong>💝 Donate via Crypto or QRIS</strong></a>
+</p>
+
+Crypto payment details are maintained at [donate.curzy.dev](https://donate.curzy.dev/).
+
+---
+
+## 📄 License
+
+This project is released under the **Apache License 2.0** — see [LICENSE](LICENSE) for full text.
